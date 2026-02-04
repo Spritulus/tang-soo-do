@@ -6,7 +6,7 @@ export class level1 extends Scene {
         this.WIDTH = 1280;
         this.HEIGHT = 720;
         this.TEXT_STYLE = {
-            fontFamily: 'Arial Black',
+            fontFamily: 'Arial Black, Sans-Serif',
             fontSize: 36,
             color: '#ffffff',
             stroke: '#000000',
@@ -41,7 +41,7 @@ export class level1 extends Scene {
         this.enemyMoveInterval = 900;
         this.enemyLastMoveTime = 0;
 
-        this.timeLimit = 60000;
+        this.timeLimit = 90000;
         
     }
 
@@ -136,12 +136,12 @@ export class level1 extends Scene {
                         targets: this.instructions,
                         duration: 500,
                         ease: 'Power2',
-                        opacity: 0,
+                        alpha: 0,
                         onComplete: () => {
                             this.instructions.destroy();
                         }
                     });
-                }, 3000);
+                }, 4000);
             }
         });
     }

@@ -6,7 +6,7 @@ export class Home extends Scene {
         this.WIDTH = 1280;
         this.HEIGHT = 720;
         this.TEXT_STYLE = {
-            fontFamily: 'Arial Black',
+            fontFamily: 'Arial Black, Sans-Serif',
             fontSize: 36,
             color: '#ffffff',
             stroke: '#000000',
@@ -64,7 +64,7 @@ export class Home extends Scene {
 
     getMenuItems (options) {
         const menuItems = [
-                this.add.image(0, -72, 'logo').setOrigin(0.5)
+                this.add.image(0, -88, 'logo').setOrigin(0.5)
             ],
             scene = this;
 
@@ -85,8 +85,8 @@ export class Home extends Scene {
     createLogo () {
         this.spritulusLogoContainer = this.add.container();
         this.spritulusLogo = this.add.image(0, 0, 'spritulus-logo').setScale(0.5);
-        this.spritulusText = this.add.text(16, this.HEIGHT - 32, 'Made with Spritulus', {
-            fontFamily: 'Arial',
+        this.spritulusText = this.add.text(16, this.HEIGHT - 40, 'Made with Spritulus', {
+            fontFamily: 'Arial, Sans-Serif',
             fontSize: 18,
             color: '#ffffff'
         });

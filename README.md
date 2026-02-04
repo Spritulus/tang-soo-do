@@ -1,4 +1,4 @@
-# Tang Soo Do by [Spritulus](https://www.spritulus.com/games/2)
+# Tang-Soo Do by [Spritulus](https://www.spritulus.com/games/2)
 
 *Installation*
 
@@ -12,6 +12,6 @@
  Run `npm run dev` and navigate to the URL provided.
 
 * License*
-Tang Soo Do by Spritulus is licensed under Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0). To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.
+Tang-Soo Do by Spritulus is licensed under Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0). To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.
 
-This package was created using [Spritulus](https://www.spritulus.com/) version 0.3.8.
+This package was created using [Spritulus](https://www.spritulus.com/) version 0.3.11.
