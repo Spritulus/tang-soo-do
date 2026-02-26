@@ -1,3 +1,5 @@
+<img width="1280" height="719" alt="Screenshot 2026-02-26 at 8 39 46 AM" src="https://github.com/user-attachments/assets/8e0aea03-a3f5-4b6f-aae1-fac74bb17e40" />
+
 # Tang-Soo Do by [Spritulus](https://www.spritulus.com/games/2)
 
 *Installation*
