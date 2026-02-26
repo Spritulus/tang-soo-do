@@ -41,7 +41,7 @@ export class level1 extends Scene {
         this.enemyMoveInterval = 900;
         this.enemyLastMoveTime = 0;
 
-        this.timeLimit = 90000;
+        this.timeLimit = 60000;
         
     }
 
@@ -101,8 +101,10 @@ export class level1 extends Scene {
                     this.enemyCanTakeHit = true;
                 });
                 this.enemy.play(this.enemyKey + '-take-hit' + (this.enemyIsFlipped ? '-flipped' : ''), true);
+                this.enemy.data.set('isAnimating', true);
                 if (this.enemyHealth <= 0) {
                     this.enemy.play(this.enemyKey + '-death' + (this.enemyIsFlipped ? '-flipped' : ''), true);
+                    this.enemy.data.set('isAnimating', true);
                 }
             }
             this.menu.updateHealthBars(this.playerHealth, this.enemyHealth);
@@ -185,6 +187,7 @@ export class level1 extends Scene {
         if (this.isGameRunning && (this.enemyLastMoveTime > this.enemyMoveInterval)) {
             this.makeEnemyMove();
         }
+
         // Keep characters within bounds
         if (this.player.x < playerXMin) {
             this.player.setPosition(playerXMin, this.player.y);
@@ -193,9 +196,9 @@ export class level1 extends Scene {
         }
 
         if (this.enemy.x < enemyXMin) {
-            this.enemy.setPosition(enemyXMin, this.player.y);
+            this.enemy.setPosition(enemyXMin, this.enemy.y);
         } else if (this.enemy.x > enemyXMax) {
-            this.enemy.setPosition(enemyXMax, this.player.y);
+            this.enemy.setPosition(enemyXMax, this.enemy.y);
         }
 
         // Keep enemy above ground - Fixes glitch where enemy can fall through ground
@@ -221,7 +224,7 @@ export class level1 extends Scene {
             if (this.enemy.body.onFloor()) {
                 if (Math.abs(this.enemy.body.velocity.x) > 0) {
                     this.enemy.play(this.enemyKey + '-move' + (this.enemyIsFlipped ? '-flipped' : ''), true);
-                } else {
+                } else if (this.enemy.data.get('isAnimating') === false) {
                     this.enemy.play(this.enemyKey + '-idle' + (this.enemyIsFlipped ? '-flipped' : ''), true);
                 }
             } else {
@@ -241,6 +244,8 @@ export class level1 extends Scene {
                 this.menu.updateStatusDisplay('KO');
             }
         }
+            
+        
     }
     
     stopGame (status) {
@@ -320,8 +325,10 @@ export class level1 extends Scene {
         this.enemyIsFlipped = false;
         this.enemy.play(this.enemyKey + '-idle' + (this.enemyIsFlipped ? '-flipped' : ''), true);
         this.physics.add.collider(this.enemy, this.belowGround);
-
+        this.enemy.setDataEnabled();
+        
         this.enemy.on('animationcomplete', () => {
+            this.enemy.data.set('isAnimating', false);
             if (this.enemyHealth > 0) {
                 this.enemy.play(this.enemyKey + '-idle' + (this.enemyIsFlipped ? '-flipped' : ''), true);
             }
@@ -361,6 +368,7 @@ export class level1 extends Scene {
             this.enemyIsAttacking = true;
             this.enemy.setVelocityX(100 * (this.enemyIsFlipped ? 1 : -1));
             this.enemy.play(this.enemyKey + '-attack-1' + (this.enemyIsFlipped ? '-flipped' : ''), true);
+            this.enemy.data.set('isAnimating', true);
             this.time.delayedCall(300, () => {
                 this.enemyIsAttacking = false;
                 if (!this.enemyIsDisabled) this.enemy.setVelocityX(0);

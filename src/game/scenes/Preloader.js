@@ -32,13 +32,13 @@ export class Preloader extends Scene {
         });
 
         // Pause-Play Icons
-        this.load.svg('pause-icon', 'pause-icon.svg');
-        this.load.svg('play-icon', 'play-icon.svg');
+        this.load.svg('pause-icon', 'pause-icon.svg', { width: 144, height: 144 });
+        this.load.svg('play-icon', 'play-icon.svg', { width: 144, height: 144 });
         
         // Game Logo
         this.load.svg('logo', 'logo.svg', {
-            height: 500,
-            width: 500
+            height: 640,
+            width: 640
         });
         // Characters
         this.load.spritesheet(

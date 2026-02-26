@@ -57,7 +57,7 @@ export class Home extends Scene {
         ];
 
         this.menu?.destroy && this.menu.destroy();
-        this.menu = this.add.container(this.WIDTH / 2, this.HEIGHT / 2 - 70);
+        this.menu = this.add.container(this.WIDTH / 2, this.HEIGHT / 2 - 100);
         this.menu.add(this.getMenuItems(options));
         this.menu.setPosition(this.WIDTH / 2, (this.HEIGHT - this.menu.height) / 2);
     }
@@ -71,8 +71,20 @@ export class Home extends Scene {
         let index = 0;
 
         for (const option of options) {
-            const button = scene.add.text(0, 80 + index * 70, option.text, this.TEXT_STYLE).setOrigin(0.5).setInteractive();
+            const button = scene.add.text(0, 100 + index * 70, option.text, this.TEXT_STYLE).setOrigin(0.5).setInteractive();
             button.on('pointerdown', option.onClick);
+
+            if (index === 0 && options.length === 1) {
+                scene.tweens.add({
+                    targets: button,
+                    scale: 1.08,
+                    duration: 800,
+                    yoyo: true,
+                    repeat: -1,
+                    ease: 'Sine.easeInOut'
+                });
+            }
+
             menuItems.push(button);
             index++;
         }
@@ -101,174 +113,174 @@ export class Home extends Scene {
         
     createAnims () {
         if (!this.didCreateAnims) {
-        this.anims.create({
-            key: 'tae-kwon-do-child-idle',
-            frames: this.anims.generateFrameNumbers('character-tae-kwon-do-child', { start: 0, end: 7 }),
-            frameRate: 8,
-            repeat: -1
-        });
-        this.anims.create({
-            key: 'tae-kwon-do-child-idle-flipped',
-            frames: this.anims.generateFrameNumbers('character-tae-kwon-do-child', { start: 35, end: 42 }),
-            frameRate: 8,
-            repeat: -1
-        });
-        this.anims.create({
-            key: 'tae-kwon-do-child-move',
-            frames: this.anims.generateFrameNumbers('character-tae-kwon-do-child', { start: 24, end: 31 }),
-            frameRate: 8,
-            repeat: -1
-        });
-        this.anims.create({
-            key: 'tae-kwon-do-child-move-flipped',
-            frames: this.anims.generateFrameNumbers('character-tae-kwon-do-child', { start: 59, end: 66 }),
-            frameRate: 8,
-            repeat: -1
-        });
-        this.anims.create({
-            key: 'tae-kwon-do-child-jump',
-            frames: this.anims.generateFrameNumbers('character-tae-kwon-do-child', { start: 17, end: 18 }),
-            frameRate: 8,
-            repeat: 0
-        });
-        this.anims.create({
-            key: 'tae-kwon-do-child-jump-flipped',
-            frames: this.anims.generateFrameNumbers('character-tae-kwon-do-child', { start: 52, end: 53 }),
-            frameRate: 8,
-            repeat: 0
-        });
-        this.anims.create({
-            key: 'tae-kwon-do-child-fall',
-            frames: this.anims.generateFrameNumbers('character-tae-kwon-do-child', { start: 15, end: 16 }),
-            frameRate: 8,
-            repeat: 0
-        });
-        this.anims.create({
-            key: 'tae-kwon-do-child-fall-flipped',
-            frames: this.anims.generateFrameNumbers('character-tae-kwon-do-child', { start: 50, end: 51 }),
-            frameRate: 8,
-            repeat: 0
-        });
-        this.anims.create({
-            key: 'tae-kwon-do-child-take-hit',
-            frames: this.anims.generateFrameNumbers('character-tae-kwon-do-child', { start: 32, end: 34 }),
-            frameRate: 8,
-            repeat: 0
-        });
-        this.anims.create({
-            key: 'tae-kwon-do-child-take-hit-flipped',
-            frames: this.anims.generateFrameNumbers('character-tae-kwon-do-child', { start: 67, end: 69 }),
-            frameRate: 8,
-            repeat: 0
-        });
-        this.anims.create({
-            key: 'tae-kwon-do-child-attack-1',
-            frames: this.anims.generateFrameNumbers('character-tae-kwon-do-child', { start: 19, end: 23 }),
-            frameRate: 8,
-            repeat: 0
-        });
-        this.anims.create({
-            key: 'tae-kwon-do-child-attack-1-flipped',
-            frames: this.anims.generateFrameNumbers('character-tae-kwon-do-child', { start: 54, end: 58 }),
-            frameRate: 8,
-            repeat: 0
-        });
-        this.anims.create({
-            key: 'tae-kwon-do-child-death',
-            frames: this.anims.generateFrameNumbers('character-tae-kwon-do-child', { start: 8, end: 14 }),
-            frameRate: 8,
-            repeat: 0
-        });
-        this.anims.create({
-            key: 'tae-kwon-do-child-death-flipped',
-            frames: this.anims.generateFrameNumbers('character-tae-kwon-do-child', { start: 43, end: 49 }),
-            frameRate: 8,
-            repeat: 0
-        });
-        this.anims.create({
-            key: 'sensei-sugaku-idle',
-            frames: this.anims.generateFrameNumbers('element-sensei-sugaku', { start: 0, end: 7 }),
-            frameRate: 8,
-            repeat: -1
-        });
-        this.anims.create({
-            key: 'sensei-sugaku-idle-flipped',
-            frames: this.anims.generateFrameNumbers('element-sensei-sugaku', { start: 35, end: 42 }),
-            frameRate: 8,
-            repeat: -1
-        });
-        this.anims.create({
-            key: 'sensei-sugaku-move',
-            frames: this.anims.generateFrameNumbers('element-sensei-sugaku', { start: 24, end: 31 }),
-            frameRate: 8,
-            repeat: -1
-        });
-        this.anims.create({
-            key: 'sensei-sugaku-move-flipped',
-            frames: this.anims.generateFrameNumbers('element-sensei-sugaku', { start: 59, end: 66 }),
-            frameRate: 8,
-            repeat: -1
-        });
-        this.anims.create({
-            key: 'sensei-sugaku-jump',
-            frames: this.anims.generateFrameNumbers('element-sensei-sugaku', { start: 17, end: 18 }),
-            frameRate: 8,
-            repeat: 0
-        });
-        this.anims.create({
-            key: 'sensei-sugaku-jump-flipped',
-            frames: this.anims.generateFrameNumbers('element-sensei-sugaku', { start: 52, end: 53 }),
-            frameRate: 8,
-            repeat: 0
-        });
-        this.anims.create({
-            key: 'sensei-sugaku-fall',
-            frames: this.anims.generateFrameNumbers('element-sensei-sugaku', { start: 15, end: 16 }),
-            frameRate: 8,
-            repeat: 0
-        });
-        this.anims.create({
-            key: 'sensei-sugaku-fall-flipped',
-            frames: this.anims.generateFrameNumbers('element-sensei-sugaku', { start: 50, end: 51 }),
-            frameRate: 8,
-            repeat: 0
-        });
-        this.anims.create({
-            key: 'sensei-sugaku-attack-1',
-            frames: this.anims.generateFrameNumbers('element-sensei-sugaku', { start: 19, end: 23 }),
-            frameRate: 8,
-            repeat: 0
-        });
-        this.anims.create({
-            key: 'sensei-sugaku-attack-1-flipped',
-            frames: this.anims.generateFrameNumbers('element-sensei-sugaku', { start: 54, end: 58 }),
-            frameRate: 8,
-            repeat: 0
-        });
-        this.anims.create({
-            key: 'sensei-sugaku-take-hit',
-            frames: this.anims.generateFrameNumbers('element-sensei-sugaku', { start: 32, end: 34 }),
-            frameRate: 8,
-            repeat: 0
-        });
-        this.anims.create({
-            key: 'sensei-sugaku-take-hit-flipped',
-            frames: this.anims.generateFrameNumbers('element-sensei-sugaku', { start: 67, end: 69 }),
-            frameRate: 8,
-            repeat: 0
-        });
-        this.anims.create({
-            key: 'sensei-sugaku-death',
-            frames: this.anims.generateFrameNumbers('element-sensei-sugaku', { start: 8, end: 14 }),
-            frameRate: 8,
-            repeat: 0
-        });
-        this.anims.create({
-            key: 'sensei-sugaku-death-flipped',
-            frames: this.anims.generateFrameNumbers('element-sensei-sugaku', { start: 43, end: 49 }),
-            frameRate: 8,
-            repeat: 0
-        });
+            this.anims.create({
+                key: 'tae-kwon-do-child-idle',
+                frames: this.anims.generateFrameNumbers('character-tae-kwon-do-child', { start: 0, end: 7 }),
+                frameRate: 8,
+                repeat: -1
+            });
+            this.anims.create({
+                key: 'tae-kwon-do-child-idle-flipped',
+                frames: this.anims.generateFrameNumbers('character-tae-kwon-do-child', { start: 35, end: 42 }),
+                frameRate: 8,
+                repeat: -1
+            });
+            this.anims.create({
+                key: 'tae-kwon-do-child-move',
+                frames: this.anims.generateFrameNumbers('character-tae-kwon-do-child', { start: 27, end: 34 }),
+                frameRate: 8,
+                repeat: -1
+            });
+            this.anims.create({
+                key: 'tae-kwon-do-child-move-flipped',
+                frames: this.anims.generateFrameNumbers('character-tae-kwon-do-child', { start: 62, end: 69 }),
+                frameRate: 8,
+                repeat: -1
+            });
+            this.anims.create({
+                key: 'tae-kwon-do-child-jump',
+                frames: this.anims.generateFrameNumbers('character-tae-kwon-do-child', { start: 17, end: 18 }),
+                frameRate: 8,
+                repeat: 0
+            });
+            this.anims.create({
+                key: 'tae-kwon-do-child-jump-flipped',
+                frames: this.anims.generateFrameNumbers('character-tae-kwon-do-child', { start: 52, end: 53 }),
+                frameRate: 8,
+                repeat: 0
+            });
+            this.anims.create({
+                key: 'tae-kwon-do-child-fall',
+                frames: this.anims.generateFrameNumbers('character-tae-kwon-do-child', { start: 15, end: 16 }),
+                frameRate: 8,
+                repeat: 0
+            });
+            this.anims.create({
+                key: 'tae-kwon-do-child-fall-flipped',
+                frames: this.anims.generateFrameNumbers('character-tae-kwon-do-child', { start: 50, end: 51 }),
+                frameRate: 8,
+                repeat: 0
+            });
+            this.anims.create({
+                key: 'tae-kwon-do-child-take-hit',
+                frames: this.anims.generateFrameNumbers('character-tae-kwon-do-child', { start: 24, end: 26 }),
+                frameRate: 8,
+                repeat: 0
+            });
+            this.anims.create({
+                key: 'tae-kwon-do-child-take-hit-flipped',
+                frames: this.anims.generateFrameNumbers('character-tae-kwon-do-child', { start: 59, end: 61 }),
+                frameRate: 8,
+                repeat: 0
+            });
+            this.anims.create({
+                key: 'tae-kwon-do-child-attack-1',
+                frames: this.anims.generateFrameNumbers('character-tae-kwon-do-child', { start: 19, end: 23 }),
+                frameRate: 8,
+                repeat: 0
+            });
+            this.anims.create({
+                key: 'tae-kwon-do-child-attack-1-flipped',
+                frames: this.anims.generateFrameNumbers('character-tae-kwon-do-child', { start: 54, end: 58 }),
+                frameRate: 8,
+                repeat: 0
+            });
+            this.anims.create({
+                key: 'tae-kwon-do-child-death',
+                frames: this.anims.generateFrameNumbers('character-tae-kwon-do-child', { start: 8, end: 14 }),
+                frameRate: 8,
+                repeat: 0
+            });
+            this.anims.create({
+                key: 'tae-kwon-do-child-death-flipped',
+                frames: this.anims.generateFrameNumbers('character-tae-kwon-do-child', { start: 43, end: 49 }),
+                frameRate: 8,
+                repeat: 0
+            });
+            this.anims.create({
+                key: 'sensei-sugaku-idle',
+                frames: this.anims.generateFrameNumbers('element-sensei-sugaku', { start: 9, end: 16 }),
+                frameRate: 8,
+                repeat: -1
+            });
+            this.anims.create({
+                key: 'sensei-sugaku-idle-flipped',
+                frames: this.anims.generateFrameNumbers('element-sensei-sugaku', { start: 43, end: 50 }),
+                frameRate: 8,
+                repeat: -1
+            });
+            this.anims.create({
+                key: 'sensei-sugaku-move',
+                frames: this.anims.generateFrameNumbers('element-sensei-sugaku', { start: 30, end: 33 }),
+                frameRate: 8,
+                repeat: -1
+            });
+            this.anims.create({
+                key: 'sensei-sugaku-move-flipped',
+                frames: this.anims.generateFrameNumbers('element-sensei-sugaku', { start: 64, end: 67 }),
+                frameRate: 8,
+                repeat: -1
+            });
+            this.anims.create({
+                key: 'sensei-sugaku-jump',
+                frames: this.anims.generateFrameNumbers('element-sensei-sugaku', { start: 17, end: 18 }),
+                frameRate: 8,
+                repeat: 0
+            });
+            this.anims.create({
+                key: 'sensei-sugaku-jump-flipped',
+                frames: this.anims.generateFrameNumbers('element-sensei-sugaku', { start: 51, end: 52 }),
+                frameRate: 8,
+                repeat: 0
+            });
+            this.anims.create({
+                key: 'sensei-sugaku-fall',
+                frames: this.anims.generateFrameNumbers('element-sensei-sugaku', { start: 7, end: 8 }),
+                frameRate: 8,
+                repeat: 0
+            });
+            this.anims.create({
+                key: 'sensei-sugaku-fall-flipped',
+                frames: this.anims.generateFrameNumbers('element-sensei-sugaku', { start: 41, end: 42 }),
+                frameRate: 8,
+                repeat: 0
+            });
+            this.anims.create({
+                key: 'sensei-sugaku-attack-1',
+                frames: this.anims.generateFrameNumbers('element-sensei-sugaku', { start: 19, end: 26 }),
+                frameRate: 8,
+                repeat: 0
+            });
+            this.anims.create({
+                key: 'sensei-sugaku-attack-1-flipped',
+                frames: this.anims.generateFrameNumbers('element-sensei-sugaku', { start: 53, end: 60 }),
+                frameRate: 8,
+                repeat: 0
+            });
+            this.anims.create({
+                key: 'sensei-sugaku-take-hit',
+                frames: this.anims.generateFrameNumbers('element-sensei-sugaku', { start: 27, end: 29 }),
+                frameRate: 8,
+                repeat: 0
+            });
+            this.anims.create({
+                key: 'sensei-sugaku-take-hit-flipped',
+                frames: this.anims.generateFrameNumbers('element-sensei-sugaku', { start: 61, end: 63 }),
+                frameRate: 8,
+                repeat: 0
+            });
+            this.anims.create({
+                key: 'sensei-sugaku-death',
+                frames: this.anims.generateFrameNumbers('element-sensei-sugaku', { start: 0, end: 6 }),
+                frameRate: 8,
+                repeat: 0
+            });
+            this.anims.create({
+                key: 'sensei-sugaku-death-flipped',
+                frames: this.anims.generateFrameNumbers('element-sensei-sugaku', { start: 34, end: 40 }),
+                frameRate: 8,
+                repeat: 0
+            });
             this.didCreateAnims = true;
         }
     }
